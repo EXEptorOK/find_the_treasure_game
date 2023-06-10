@@ -1,0 +1,46 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <div align = "center">
+            <img id="map" src="https://hranidengi.ru/wp-content/uploads/2016/01/platezhnaya-karta-mir.jpg" width = "1120" >;
+            <!-- height = 648 -->
+            <p id="hint"></p>
+            <p><button> <a href="https://www.youtube.com/watch?v=cMIHLzuJ4Wg">Ножмi на мiня!</a></button></p>
+        </div>
+        <script>
+            let counterClicks = 0;
+            function wordEnding (counterClicks) {
+                if (counterClicks%10 >=2 && counterClicks%10 <=4){
+                    return "а";
+                }
+                else if (counterClicks%10 == 1) {
+                    return "";
+                }
+                else {
+                    return "ов";
+                } 
+            }
+            function test(event){
+                let aDiffer = event.offsetX - treasure.x;
+                let bDiffer = event.offsetY - treasure.y;
+                let distance = Math.sqrt(aDiffer*aDiffer + bDiffer*bDiffer);
+                counterClicks++; 
+                if (distance < 20){
+                    $("#hint").text("Вы нашли клад!");
+                    alert ("Вы потратили: " + counterClicks + " клик" + wordEnding(counterClicks)); 
+                }
+                else {
+                    $("#hint").text(distance);
+                }
+            }    
+            let treasure = {
+                x:Math.random()*1120,
+                y:Math.random()*648  
+            };
+            $("#map").click(test);
+           
+        </script>
+    </body>
+</html>    
